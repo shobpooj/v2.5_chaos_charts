@@ -1,0 +1,34 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-04-14T10:28:08Z
+  name: load-chaos
+  version: 0.1.3
+  annotations:
+    categories: load-chaos
+    chartDescription: Injects load-chaos kubernetes chaos 
+spec:
+  displayName: load-chaos Chaos
+  categoryDescription: >
+   Details
+  experiments:
+    - load-test-chaos
+  keywords:
+    - Kubernetes
+    - K8S
+    - Pod
+    - load-chaos
+  maintainers:
+    - name: ""
+      email: ""
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: load-chaos Website
+      url: ""
+
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/load-chaos/icons/load-chaos.png
+      mediatype: image/png
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/load-chaos/experiments.yaml

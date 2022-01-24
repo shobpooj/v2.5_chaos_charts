@@ -1,0 +1,46 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-04-14T10:28:08Z
+  name: load-test-chaos
+  version: 0.1.3
+  annotations:
+    categories: load-chaos
+    vendor: ""
+    support: ""
+spec:
+  displayName: load-test-chaos
+  categoryDescription: |
+   Details
+  keywords:
+    - Kubernetes
+    - K8S
+    - load-chaos
+    - Pod
+  platforms:
+    - GKE
+    - Konvoy
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+  maturity: alpha
+  maintainers:
+    - name: ""
+      email: ""
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/load-chaos/pod-delete
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/load-chaos/load-test-chaos/
+    - name: Video
+      url: 
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/load-chaos/load-test-chaos/experiment.yaml

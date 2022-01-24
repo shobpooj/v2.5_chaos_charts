@@ -1,0 +1,5 @@
+packageName: load-chaos
+experiments:
+  - name: load-test-chaos
+    CSV: load-test-chaos.chartserviceversion.yaml
+    desc: "load-test-chaos"

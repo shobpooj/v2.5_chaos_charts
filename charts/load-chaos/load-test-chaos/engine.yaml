@@ -1,0 +1,55 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  generateName: load-test-chaos
+  namespace: "{{workflow.parameters.adminModeNamespace}}"
+  labels:
+    instance_id: 1bf60220-0aa9-480a-a51d-1db68bfeb047
+    context: load-test-chaos_litmus
+    workflow_name: custom-chaos-workflow-1638281927
+spec:
+  engineState: active
+  auxiliaryAppInfo: ""
+  chaosServiceAccount: litmus-admin
+  jobCleanUpPolicy: retain
+  experiments:
+    - name: load-test-chaos
+      spec:
+        components:
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: "50"
+            - name: CHAOS_INTERVAL
+              value: "50"
+            - name: USERS
+              value: "1"
+            - name: HOST
+              value: ""
+            - name: LOAD_TYPE
+              value: "load" 
+            - name: SPAWN_RATE
+              value: "1"
+            - name: RESPONSE_TYPE
+              value: "token"
+            - name: CLIENT_ID  
+              valueFrom:
+                secretKeyRef:
+                  name: load.credentials
+                  key: client_id
+            - name: CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: load.credentials
+                  key: client_secret
+            - name: CM_FILE
+              value: "/tmp/demo/config.py"
+            - name: GRANT_TYPE
+              value: "client_credentials"
+            - name: NODE_NAMES  
+              value: ""
+            - name: REPLICA
+              value: "1"
+            - name: LOAD_IMAGE 
+              value: ""
+        probe: []
+  annotationCheck: "false"

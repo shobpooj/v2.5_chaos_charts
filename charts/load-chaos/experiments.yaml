@@ -1,0 +1,106 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: >
+    it execs inside target pods to run the chaos inject commands, waits for the
+    chaos duration and reverts the chaos
+kind: ChaosExperiment
+metadata:
+  name: load-test-chaos
+  labels:
+    name: load-test-chaos
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - batch
+          - apps
+          - litmuschaos.io
+        resources:
+          - jobs
+          - pods
+          - pods/log
+          - events
+          - deployments
+          - replicasets
+          - pods/exec
+          - chaosengines
+          - chaosexperiments
+          - chaosresults
+        verbs:
+          - create
+          - list
+          - get
+          - patch
+          - update
+          - delete
+          - deletecollection
+    image: ""
+    imagePullPolicy: Always
+    args:
+      - -c
+      - ./experiments -name load-test-chaos
+    command:
+      - /bin/bash
+    env:
+      - name: TOTAL_CHAOS_DURATION
+        value: '30'
+
+      - name: CHAOS_INTERVAL
+        value: '10'
+
+      - name: LIB_IMAGE  
+        value: ''
+      - name: CHAOS_NAMESPACE
+        value: 'litmus'
+
+      - name: LIB 
+        value: 'litmus'
+      
+      - name: USERS
+        value: '5'
+
+      - name: HOST
+        value: ''
+
+      - name: LOAD_TYPE
+        value: 'load' #post
+
+      - name: SPAWN_RATE
+        value: '1'
+
+      - name: RESPONSE_TYPE
+        value: 'token'
+
+      - name: CLIENT_ID  
+        value: ''
+
+      - name: CLIENT_SECRET
+        value: ''
+      
+      - name: GRANT_TYPE
+        value: 'client_credentials'
+
+      - name: NODE_NAMES  
+        value: ''
+
+      - name: REPLICA
+        value: '3'
+
+      - name: RAMP_TIME
+        value: ''
+
+      - name: LOAD_IMAGE 
+        value: ''
+    labels:
+      name: load-test-chaos
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    configMaps:
+    - name: demo
+      mountPath: /tmp/demo
